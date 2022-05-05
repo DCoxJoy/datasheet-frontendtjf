@@ -1,0 +1,41 @@
+.Options {
+    background: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 25px;
+    padding: 10px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.Options .form-options {
+    width: 100%;
+}
+
+.Options .option-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.Options .option-buttons button {
+    margin: 0 5px;
+}
+
+.Options .sku-select {
+    width: 22%;
+    min-width: 100px;
+}
+
+.Options .contact-select {
+    width: 22%;
+    min-width: 150px;
+}
+
+.Options .reseller-select {
+    width: 22%;
+    min-width: 150px;
+}

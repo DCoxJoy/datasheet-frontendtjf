@@ -1,0 +1,256 @@
+{
+  "site": {
+    "product": {
+      "entityId": 1784,
+      "brand": {
+        "name": "Apple"
+      },
+      "name": "aXtion Bold MPS case with Key Lock for iPad Pro 12.9\" 4th Gen (Black)",
+      "sku": "CWA423KL",
+      "path": "/axtion-bold-mps-case-with-key-lock-for-ipad-pro-12-9-4th-gen-black/",
+      "description": "Military-grade certified, water-resistant, lockable, rugged case with MagConnect compatibility, featuring a rotating hand strap, and kickstand<br>&lt;!-- split --&gt;<br>The aXtion Bold MPS for iPad Pro 12.9\" 4th Gen is a rugged case designed to protect the device from theft when used in public or shared spaces. The included key cable lock is adhered directly to the back of the iPad and tethered to an immovable object to prevent theft. Additional features include; drop-proof, water-resistance, port and button covers, camera and screen protectors, rotating easy to clean silicone hand strap, and slide out kickstand. This case is compatible with the Apple Pencil (2nd Gen) and allows seamless pairing when housed in the case's stylus holder.&nbsp;<BR><br>This unique case is compatible with all MagConnect Mounts as well as the Universal Shoulder Strap which both enable the user to expand the usage of the tablet in virtually any environment or use case.<br>&lt;!-- split --&gt;<br><ul><li>Compatible with iPad Pro 12.9\" 4th | 3rd Gen</li><li>Military-grade shockproof certified (MIL-STD-810G) and water-resistant</li><li>Built with MagConnect technology for easy attachment and removal from any MagConnect mount</li><li>Compatible with Apple Pencil 2nd Gen pairing and charging technology</li><li>Built-in, heavy-duty screen protector, which is also replaceable</li><li>Built-in 360 rotation hand strap with a slide out kickstand with landscape viewing mode &amp; landscape and portrait typing modes</li><li>Easily cleaned with most hospital grade wipes: Sani-Cloth AF3, Cavi-Wipes and Clorox Healthcare Bleach Germicidal Wipes</li><li>Supports shoulder strap (sold separately)</li></ul><br>&lt;!-- split --&gt;<br>Case Specifications<br>Dimensions: 9.06\" x 11.62\" x 1.42\"<br>Weight: 1.47 lb<br>Cable length: 6' (made of steel)<br>Shockproof Rating: Military Grade Shockproof Standard (MIL-STD-810G)<br>Compatible Models: iPad Pro 4th Gen- A2229, A2069, A2232, A2233&nbsp;<br><br><a href=\"https://support.apple.com/en-us/HT201471\" target=\"_blank\"><font color=\"#ff0000\">How to identify your iPad model number</font></a><br><br>Case Features<br>1. Accessories port for optional shoulder strap (CWX202)<br>2. MIL-STD-810G Drop-proof certification with reinforced corners<br>3. Security slot for security cable<br>4. Rotation lock for usage on a mount<br>5. MagConnect adapter for compatibility with all MagConnect mounts<br>6. Rotating slide out kickstand<br>7. Rotating easy-to-clean, adjustable, silicone hand strap<br>8. Port covers<br>9. Apple Pencil 2nd Gen holder with pairing and charging compatibility<br>10. Built-in screen protector<br>11. Rear facing camera lens cover<br>12. Molded-in buttons<br>13. Ambient light sensor compatibility",
+      "height": {
+        "value": 1.97,
+        "unit": "in"
+      },
+      "width": {
+        "value": 12.8,
+        "unit": "in"
+      },
+      "weight": {
+        "value": 1.95,
+        "unit": "lb"
+      },
+      "depth": {
+        "value": 9.84,
+        "unit": "in"
+      },
+      "warranty": "1 Year",
+      "customFields": {
+        "edges": [
+          {
+            "node": {
+              "name": "package_content",
+              "value": "Case"
+            }
+          },
+          {
+            "node": {
+              "name": "certifications",
+              "value": "MIL-STD-810G"
+            }
+          },
+          {
+            "node": {
+              "name": "datasheet_benefits",
+              "value": "Expand Usability,High Quality,Improve Efficiency,Increase Mobility,Peace of Mind,Protect Investment"
+            }
+          },
+          {
+            "node": {
+              "name": "datasheet_features",
+              "value": "Military Grade,Mount Compatible,Port Covers,Rotating Hand Strap,Screen Protector,Water-Resistant"
+            }
+          },
+          {
+            "node": {
+              "name": "product_status",
+              "value": "Active"
+            }
+          },
+          {
+            "node": {
+              "name": "device_compatibility",
+              "value": "iPad Pro 12.9\" 4th Gen"
+            }
+          },
+          {
+            "node": {
+              "name": "product_type",
+              "value": "Cases"
+            }
+          },
+          {
+            "node": {
+              "name": "product_line",
+              "value": "aXtion"
+            }
+          },
+          {
+            "node": {
+              "name": "axtion_series",
+              "value": "Bold"
+            }
+          },
+          {
+            "node": {
+              "name": "unit_weight",
+              "value": "1.47"
+            }
+          },
+          {
+            "node": {
+              "name": "unit_height",
+              "value": "11.62"
+            }
+          },
+          {
+            "node": {
+              "name": "unit_width",
+              "value": "9.06"
+            }
+          },
+          {
+            "node": {
+              "name": "unit_depth",
+              "value": "1.42"
+            }
+          },
+          {
+            "node": {
+              "name": "upc_code",
+              "value": "810041120137"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Hand Strap Compatible"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Kickstand"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Lockable"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "MIL-STD-810G"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Rugged"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Screen Protector"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Shoulder Strap Compatible"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Stylus Holder / Tether"
+            }
+          },
+          {
+            "node": {
+              "name": "features",
+              "value": "Weatherproof"
+            }
+          },
+          {
+            "node": {
+              "name": "device_type",
+              "value": "iPad Pro 12.9\" 4th Gen"
+            }
+          },
+          {
+            "node": {
+              "name": "color",
+              "value": "Black"
+            }
+          },
+          {
+            "node": {
+              "name": "rating",
+              "value": "Water-resistant"
+            }
+          }
+        ]
+      },
+      "defaultImage": {
+        "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8809/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-vertical-angled-cable-lock-cwa423kl__68098.1592326976.jpg",
+        "img640px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/640w/products/1784/8809/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-vertical-angled-cable-lock-cwa423kl__68098.1592326976.jpg",
+        "img960px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/960w/products/1784/8809/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-vertical-angled-cable-lock-cwa423kl__68098.1592326976.jpg"
+      },
+      "images": {
+        "edges": [
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8809/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-vertical-angled-cable-lock-cwa423kl__68098.1592326976.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8650/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-front-back-angled-cwa423kl__71341.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8653/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-front-back-kickstand-angled-cwa423kl__25704.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8645/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-angled-cwa423kl__28778.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8647/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-kickstand-angled-cwa423kl__07262.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8648/cwa423kl-thumbnail__32156.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8646/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-back-cwa423kl__12932.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8651/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-front-back-cwa423kl__29900.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8649/rugged-secured-case-axtion-bold-mps-ipad-pro-12-9-front-back-kickstand-cwa423mp__68335.1592326975.jpg"
+            }
+          },
+          {
+            "node": {
+              "img320px": "https://cdn11.bigcommerce.com/s-4ccc5gfp0c/images/stencil/320w/products/1784/8999/CWA423KL_tech_spec__37076.1592846759.jpg"
+            }
+          }
+        ]
+      },
+      "prices": {
+        "price": {
+          "value": 159.99,
+          "currencyCode": "USD"
+        }
+      }
+    }
+  }
+}

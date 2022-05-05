@@ -1,0 +1,340 @@
+:root {
+    --main-accent-color: #d0103a;
+    --black-color: #000000;
+    --white-color: #ffffff;
+    --dark-color: #191919;
+    --light-color: #fdfdfd;
+    --gray-color: #58595b;
+}
+
+/* FONTS */
+@font-face {
+    font-family: Helvetica-Neue-Medium;
+    src: url(https://thejoyfactory.com/content/datasheet/fonts/Helvetica-Neue-Medium_22555.ttf)
+}
+
+@font-face {
+    font-family: Helvetica-Neue-Light;
+    src: url(https://thejoyfactory.com/content/datasheet/fonts/Helvetica-Neue-Light_22503.ttf)
+}
+
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(https://thejoyfactory.com/content/datasheet/fonts/HelveticaNeue.ttf)
+}
+
+@font-face {
+    font-family: Helvetica-Regular;
+    src: url(https://thejoyfactory.com/content/datasheet/fonts/Helvetica-Regular.ttf)
+}
+
+/* LAYOUT */
+.page {
+    font-family: Helvetica-Neue-Light;
+    color: var(--black-color);
+    display: none;
+    margin: 0;
+    padding: 50px 60px 20px 60px;
+    border: solid 1px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+#intro {
+    display: none;
+}
+
+.download-icon {
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+    width: 120px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .page {
+        display: block;
+    }
+    .download-icon {
+        display: none;
+    }
+    #intro {
+        display: block;
+    }
+}
+
+.hr-short {
+    border-top: 1px solid rgba(0, 0, 0, 0.9);
+    width: 40px;
+}
+
+.hr-left {
+    margin: 13px 5px 13px 15px;
+}
+
+p {
+    margin: 0;
+}
+
+/* HEADER */
+
+/* FOOTER */
+.footer-company {
+    color: var(--dark-color);
+    border-bottom: 1px solid var(--main-accent-color);
+    font-family: HelveticaNeue;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.footer-second-desc {
+    font-size: 8px;
+}
+
+.footer-icons td {
+    padding: 2px 8px;
+}
+
+.footer-image {
+    text-align: center;
+    margin: 10px;
+}
+
+/* PAGE ONE */
+.product-name {
+    font-size: 20pt;
+    font-weight: 700;
+    line-height: 20pt;
+    margin: 0;
+    padding: 10px 0px 0px 15px;
+    text-transform: none;
+    width: 100%;
+}
+
+.product-short-desc {
+    line-height: 18pt;
+    padding: 2px 15px;
+}
+
+.product-sku-price p {
+    line-height: 1.25;
+    margin: 0;
+    padding: 0px 0px 0px 15px;
+    width: 100%;
+}
+
+.product-desc-container td {
+    vertical-align: top;
+}
+
+.product-description {
+    padding: 10px 15px;
+    text-align: left;
+    width: 65%;
+}
+
+.product-images {
+    padding: 10px;
+    position: relative;
+    top: -40px;
+    width: 35%;
+}
+
+.default-image {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 300px;
+}
+
+.thumbnail {
+    border: 1px solid #E7E7E7;
+    text-align: center;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 0px;
+    height: auto;
+    width: 100px;
+}
+
+/* PAGE ONE - BENEFITS */
+.benefits {
+    color: white;
+    font-family: Helvetica-Neue-Medium;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #d0103a;
+    margin-bottom: 20px;
+    padding: 30px 0px 20px 40px;
+    text-align: left;
+    width: 100%;
+}
+
+.benefits-header {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.benefits table {
+    width: 100%;
+}
+
+.benefits td {
+    padding: 10px 5px 5px 5px;
+    width: 35%;
+}
+
+/* ----- PAGE ONE - FEATURES ----- */
+.features {
+    font-family: Helvetica-Neue-Medium;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px 0px 50px 40px;
+    text-align: left;
+    min-height: 250px;
+    width: 100%;
+}
+
+.features-header {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.features table {
+    width: 100%;
+}
+
+.features td {
+    padding: 10px 5px 5px 5px;
+    width: 35%;
+}
+
+.features li {
+    list-style: none;
+}
+
+.feature-icon {
+    padding: 5px 10px 5px 0px;
+    width: 50px;
+}
+
+/* PAGE TWO */
+/* Technical Specifications */
+.tech-specs-header {
+    background-color: #EDEDED;
+    font-size: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    height: 35px;
+    width: 100%;
+ }
+
+ .tech-specs-header .underline {
+    border-bottom: 1px solid #d0103a;
+    margin: 0px;
+    padding: 0px 10px;
+    position: relative;
+    top: -13px;
+    width: 30px;
+ }
+
+.tech-specs-container {
+    margin-bottom: 20px;
+}
+
+.tech-spec-image-container {
+    width: 50%;
+}
+
+.tech-spec-image {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    min-width: 443px;
+    width: 100%;
+}
+
+.tech-specs {
+    border-left: 1px solid rgba(0, 0, 0, 0.231);
+    text-align: left;
+    padding-left: 25px;
+    width: 50%;
+}
+
+.tech-specs ol {
+   padding-left: 25px;
+}
+
+/* Product Specifications */
+.product-specifications {
+    background: #EBECED;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 250px;
+}
+
+.product-specs-table {
+    text-align: left;
+    margin: 5px 10px;
+    width: 98%;
+}
+
+.tech-specs-container td {
+    vertical-align: top;
+}
+
+.product-info-container {
+    vertical-align: top;
+    width: 35%;
+}
+
+.product-specifications .product-name {
+    color: black;
+    font-size: 15px;
+    padding: 20px 25px 10px 25px;
+}
+
+.product-info-group {
+    color: white;
+    font-size: 1.4rem;
+    background-color: var(--main-accent-color);
+    padding: 35px 25px;
+}
+
+.product-specs-inner-table {
+    color: black;
+    background: #F2F3F3;
+    border: 1px solid #c5c3c3;
+    width: 100%;
+}
+
+.product-specs-inner-table th {
+    font-size: 1.1rem;
+    padding: 5px;
+}
+
+.product-specs-inner-table td,
+.product-specs-inner-table th {
+    padding-left: 10px;
+    width: 30%;
+}
+
+.product-specs-inner-table tr:nth-child(even) {
+    background: #F2F3F3;
+}
+
+.product-specs-inner-table tr:nth-child(odd) {
+    background: #C6C5C5;
+}
+
+.product-specs-title {
+    color: white;
+    text-transform: uppercase;
+    background-color: #999999;
+}
