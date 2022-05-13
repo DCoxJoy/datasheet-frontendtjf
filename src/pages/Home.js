@@ -4,6 +4,7 @@ import { saveAs } from "file-saver";
 import LoadingSpinner from "../components/LoadingSpinner";
 import "../App.css";
 import "../components/Datasheet.css";
+import "./Home.css";
 
 const baseURL =
   process.env.NODE_ENV === "production"
@@ -178,7 +179,7 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "certifications") {
           let certifications = field.node.value;
-             productData.certifications = certifications.replace("C3D2,", "C3D2   ");
+             productData.certifications = certifications.replace("C3D2,", "C3D2   </br>");
         
         }
       });
