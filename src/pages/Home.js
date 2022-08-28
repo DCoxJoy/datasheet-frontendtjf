@@ -208,8 +208,6 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "material") {
           productData.material = field.node.value;
-        } else {
-          productData.material = "N/A"
         }
       });
     }
