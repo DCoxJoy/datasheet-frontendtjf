@@ -410,25 +410,25 @@ class App extends Component {
           `;
 
       // Contact Section - currently not used on customer preview
-      const contact = `
-          <div class="contact-table" style="margin: 10px 0 300px 0; padding: 10px;">
-            <table class="contact" style="background: white; width: 100%;">
-              <tr>
-                <td class="text-center" style="padding: 5px 30px; width: 25%;">
-                  <img src="https://thejoyfactory.com/content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
-                </td>
-                <td class="text-left" style="padding: 5px 30px; width: 25%;">
-                  <p style="font-size: 1.25rem; font-weight: bold;">${product.contact_name}</p>
-                  <p style="font-size: 0.9rem; font-weight: bold;">${product.contact_dep}</p>
-                </td>
-                <td class="text-left" style="border-left:solid 2px red; padding: 5px 30px; width: 50%;">
-                  <p>Direct Phone Number | ${product.contact_phone}</p>
-                  <p>Email Address | ${product.contact_email}</p>
-                </td>
-              </tr>
-            </table>
-          </div>
-        `;
+      // const contact = `
+      //     <div class="contact-table" style="margin: 10px 0 300px 0; padding: 10px;">
+      //       <table class="contact" style="background: white; width: 100%;">
+      //         <tr>
+      //           <td class="text-center" style="padding: 5px 30px; width: 25%;">
+      //             <img src="https://thejoyfactory.com/content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
+      //           </td>
+      //           <td class="text-left" style="padding: 5px 30px; width: 25%;">
+      //             <p style="font-size: 1.25rem; font-weight: bold;">${product.contact_name}</p>
+      //             <p style="font-size: 0.9rem; font-weight: bold;">${product.contact_dep}</p>
+      //           </td>
+      //           <td class="text-left" style="border-left:solid 2px red; padding: 5px 30px; width: 50%;">
+      //             <p>Direct Phone Number | ${product.contact_phone}</p>
+      //             <p>Email Address | ${product.contact_email}</p>
+      //           </td>
+      //         </tr>
+      //       </table>
+      //     </div>
+      //   `;
 
       // Render the product into a preview
       return `
