@@ -583,7 +583,7 @@ class App extends Component {
                         <td>Package content: ${product.package_content}</td>
                       </tr>
                       <tr>
-                        <td>Package content: ${product.material}</td>
+                        <td>Material: ${product.material}</td>
                       </tr>
                     </table>
                   </td>
