@@ -28,6 +28,7 @@ let productData = {
   datasheet_features: "",
   device_compatibility: "",
   package_content: "",
+  material: "",
   warranty: "",
   certifications: "",
   rating: "",
@@ -116,17 +117,17 @@ class App extends Component {
     */
 
     // Based on the browser locale, provide a localized price
-    function formatLocalizedPrice(price) {
-      return new Intl.NumberFormat(navigator.language, {
-        style: "currency",
-        currency: price.currencyCode,
-      }).format(price.value);
-    }
+    // function formatLocalizedPrice(price) {
+    //   return new Intl.NumberFormat(navigator.language, {
+    //     style: "currency",
+    //     currency: price.currencyCode,
+    //   }).format(price.value);
+    // }
 
     // Create a srcset string for responsive images
-    function renderSrcset(image) {
-      return `${image.img320px} 320w, ${image.img640px} 640w, ${image.img960px} 960w, ${image.img1280px} 1280w`;
-    }
+    // function renderSrcset(image) {
+    //   return `${image.img320px} 320w, ${image.img640px} 640w, ${image.img960px} 960w, ${image.img1280px} 1280w`;
+    // }
 
     // Function to strip HTML from product descriptions, leaving just the text
     function stripHtml(html) {
@@ -199,6 +200,14 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "package_content") {
           productData.package_content = field.node.value;
+        }
+      });
+    }
+
+    function findMaterial(fields) {
+      fields.forEach((field) => {
+        if (field.node.name === "material") {
+          productData.material = field.node.value;
         }
       });
     }
@@ -345,6 +354,7 @@ class App extends Component {
       productData.weight = product.weight;
       productData.width = product.width;
       findPackageContent(product.customFields.edges);
+      findMaterial(product.customFields.edges);
       findDeviceCompatibility(product.customFields.edges);
     }
 
@@ -572,6 +582,9 @@ class App extends Component {
                       <tr>
                         <td>Package content: ${product.package_content}</td>
                       </tr>
+                      <tr>
+                        <td>Package content: ${product.material}</td>
+                      </tr>
                     </table>
                   </td>
                 </tr>
@@ -583,10 +596,10 @@ class App extends Component {
         `;
     }
 
-    function renderPrice(prices) {
-      // Render the price component from the supplied prices
-      return `<span></span>`;
-    }
+    // function renderPrice(prices) {
+    //   // Render the price component from the supplied prices
+    //   return `<span></span>`;
+    // }
 
     /*
         API fetching
