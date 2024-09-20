@@ -53,7 +53,8 @@ let productData = {
   footer_site: "www.thejoyfactory.com",
 };
 
-console.log(productData);
+
+
 
 class App extends Component {
   constructor(props) {
@@ -110,7 +111,8 @@ class App extends Component {
     console.log("FetchData started...");
     const pageUrl = new URL(window.location);
     const searchParams = pageUrl.searchParams;
-    console.log(`Search Params: ${searchParams}`);
+    //console.log(`Search Params: ${searchParams}`);
+    
 
     /*
         Utility functions for rendering
@@ -227,7 +229,24 @@ class App extends Component {
           thumbnails += `<img class="thumbnail" src="${image.node.img320px}">`;
       });
       productData.thumbnails = thumbnails;
+
     }
+    
+  
+    function generateImagelist(images) {
+      
+      let productList = "";
+  
+      images.forEach((image, index) => {
+        if (index !== 0 && index < 1 )
+        productList += `<img class="thumbnail2" src="${image.node.img320px}">`;
+      });
+      productData.productList = productList;
+    }
+
+  
+
+
 
     function findBenefits(fields) {
       var benefits;
@@ -263,8 +282,9 @@ class App extends Component {
         }
       });
       fields.forEach((field) => {
-        if (field.node.name === "axtion_series") {
+        if (field.node.name === "series") {
           axtionSeries = field.node.value;
+          
         }
       });
       let featureList = features.split(",");
@@ -328,6 +348,9 @@ class App extends Component {
         }
       });
     }
+   
+
+
 
     // Assign data values into state
     function handleData(data) {
@@ -346,6 +369,7 @@ class App extends Component {
       productData.defaultImage = product.defaultImage;
       productData.images = product.images.edges;
       generateThumbnails(product.images.edges);
+      generateImagelist(product.images.edges);
       findBenefits(product.customFields.edges);
       findFeatures(product.customFields.edges);
       productData.warranty = product.warranty;
@@ -358,15 +382,16 @@ class App extends Component {
       findDeviceCompatibility(product.customFields.edges);
     }
 
+ 
     /*
         Page rendering logic
     */
     function renderPage(data) {
       // Render the HTML for the product
-      console.log(data);
+      //console.log(data);
 
-      const product = data.site.product;
-      console.log(product);
+      //const product = data.site.product;
+   
 
       handleData(data);
 
@@ -461,6 +486,9 @@ class App extends Component {
                   }
                   <p>
                     ${product.thumbnails}
+                    ${product.productList}
+
+
                   </p>
                 </td>
               </tr>
@@ -503,6 +531,10 @@ class App extends Component {
                         }" alt="The Joy Factory product image">`
                       : ""
                   }
+
+                  
+
+                  
                   <p class="disclaimer" style="font-size: 7px;">The information on this data sheet is subject to change at any time at the discretion of The Joy Factory</p>
                 </td>
                 <td class="tech-specs">
@@ -694,10 +726,14 @@ class App extends Component {
     // Set up default params (token expires 1/15/2038)hh
     let params = {
       store_url: "https://thejoyfactory.com",
+      images_url: "https://api.bigcommerce.com/stores/4ccc5gfp0c/v3/catalog/products/1970/images",
       id: null,
       token:
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9kYXRhc2hlZXQtZnJvbnRlbmR0amYtdjEubmV0bGlmeS5hcHAiXSwiZWF0IjoyMTQ2MDAyNTc4LCJpYXQiOjE2NTE3NzMxMTEsImlzcyI6IkJDIiwic2lkIjoxMDAwNjc2MjQwLCJzdWIiOiJxc3M0dWxrNmdlNjI1NHJtaXZhZTdqYmh2NnhsMGp4Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.V2H0x1GY8R0D1gDzfBoL5Ad0fZ0KeiIPKeUzhhENE1VB8pNzGR06GDg5OdZLxhVHfvP8ukhQVCX4GbbUXyklaw",
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9kYXRhc2hlZXQtZnJvbnRlbmR0amYtdjEubmV0bGlmeS5hcHAiXSwiZWF0IjoyMTQ2MDAyNTc4LCJpYXQiOjE2NTE3NzMxMTEsImlzcyI6IkJDIiwic2lkIjoxMDAwNjc2MjQwLCJzdWIiOiJxc3M0dWxrNmdlNjI1NHJtaXZhZTdqYmh2NnhsMGp4Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.V2H0x1GY8R0D1gDzfBoL5Ad0fZ0KeiIPKeUzhhENE1VB8pNzGR06GDg5OdZLxhVHfvP8ukhQVCX4GbbUXyklaw"
     };
+
+
+
 
     // Fill in supplied URL params
     Object.keys(params).forEach(function (key) {
@@ -705,7 +741,7 @@ class App extends Component {
         params[key] = searchParams.get(key);
       }
     });
-    console.log(params.id);
+   
     // Use testdata.json file as testData
     // renderPage(testData);
 
@@ -737,6 +773,8 @@ class App extends Component {
   render() {
     const loading = this.state.loading;
 
+
+   
     return (
       <div className="App container my-5">
         <div className="LoadingSpinner-wrapper">
