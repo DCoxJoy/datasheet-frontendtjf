@@ -1,0 +1,13 @@
+.Login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Login .container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+}

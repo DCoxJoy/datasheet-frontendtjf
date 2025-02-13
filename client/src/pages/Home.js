@@ -4,12 +4,6 @@ import { saveAs } from "file-saver";
 import LoadingSpinner from "../components/LoadingSpinner";
 import "../App.css";
 import "../components/Datasheet.css";
-import "./Home.css";
-
-const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://datasheet-backendtjf.herokuapp.com"
-    : "http://localhost:3001";
 
 let productData = {
   product_id: 0,
@@ -28,7 +22,6 @@ let productData = {
   datasheet_features: "",
   device_compatibility: "",
   package_content: "",
-  material: "",
   warranty: "",
   certifications: "",
   rating: "",
@@ -44,13 +37,13 @@ let productData = {
   contact_name: "The Joy Factory",
   contact_dep: "Sales Team",
   contact_phone: "949.382.1552",
-  contact_email: "sales@thejoyfactory.com",
+  contact_email: "sales@shop.thejoyfactory.com",
   footer_company: "The Joy Factory Inc.",
   footer_address: "16811 Hale Ave Bldg D, Irvine, CA 92606",
-  footer_email: "sales@thejoyfactory.com",
+  footer_email: "sales@shop.thejoyfactory.com",
   footer_phone: "949.216.8869",
   footer_fax: "949.216.8869",
-  footer_site: "www.thejoyfactory.com",
+  footer_site: "www.shop.thejoyfactory.com",
 };
 
 class App extends Component {
@@ -60,72 +53,55 @@ class App extends Component {
       id: 0,
       loading: false,
     };
+    const query = new URLSearchParams(this.props.location.search);
+    this.state = {
+      id: query.get("id"),
+      sku: query.get("sku"),
+    };
   }
-
   // Use Componenet state data to handle PDF Download
-  // createAndDownloadPdf = () => {
-  //   axios
-  //     .post(`${baseURL}/create-pdf`, this.state)
-  //     .then(({ data }) => {
-  //       console.log("PDF BUFFER", data);
-  //       axios.get(`${baseURL}/fetch-pdf`, { responseType: "blob" });
-  //     })
-  //     .then((res) => {
-  //       const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-  //       saveAs(pdfBlob, "datasheet-tjf.pdf");
-  //     });
-  // };
+  createAndDownloadPdf = () => {
+    axios
+      .post("/create-pdf", this.state)
+      .then(() => axios.get("fetch-pdf", { responseType: "blob" }))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+        saveAs(pdfBlob, "datasheet-tjf.pdf");
+      });
+  };
 
   // Currently being used to handle PDF Download
   downloadPdf = () => {
     this.setState({ loading: true });
-
     axios
-      .post(`${baseURL}/download-pdf`, productData)
-      .then(() => axios.get(`${baseURL}/fetch-pdf`, { responseType: "blob" }))
+      .post("/download-pdf", productData)
+      .then(() => axios.get("fetch-pdf", { responseType: "blob" }))
       .then((res) => {
-        console.log(res);
         const pdfBlob = new Blob([res.data], { type: "application/pdf" });
         saveAs(pdfBlob, `datasheet-${productData.product_sku}.pdf`);
         this.setState({ loading: false });
       });
   };
 
-  // downloadPdf = () => {
-  //   fetch("/download-pdf", {
-  //     method: "POST",
-  //     body: JSON.stringify(productData),
-  //   }).then((res) => {
-  //     res.arrayBuffer().then((res) => {
-  //       console.log(res);
-  //       const pdfBlob = new Blob([res], { type: "application/pdf" });
-  //       saveAs(pdfBlob, "datasheet.pdf");
-  //     });
-  //   });
-  // }
-
   fetchData = () => {
-    console.log("FetchData started...");
     const pageUrl = new URL(window.location);
     const searchParams = pageUrl.searchParams;
-    //console.log(`Search Params: ${searchParams}`);
-
     /*
         Utility functions for rendering
     */
 
     // Based on the browser locale, provide a localized price
-    // function formatLocalizedPrice(price) {
-    //   return new Intl.NumberFormat(navigator.language, {
-    //     style: "currency",
-    //     currency: price.currencyCode,
-    //   }).format(price.value);
-    // }
+    function formatLocalizedPrice(price) {
+      return new Intl.NumberFormat(navigator.language, {
+        style: "currency",
+        currency: price.currencyCode,
+      }).format(price.value);
+    }
 
     // Create a srcset string for responsive images
-    // function renderSrcset(image) {
-    //   return `${image.img320px} 320w, ${image.img640px} 640w, ${image.img960px} 960w, ${image.img1280px} 1280w`;
-    // }
+    function renderSrcset(image) {
+      return `${image.img320px} 320w, ${image.img640px} 640w, ${image.img960px} 960w, ${image.img1280px} 1280w`;
+    }
 
     // Function to strip HTML from product descriptions, leaving just the text
     function stripHtml(html) {
@@ -178,10 +154,7 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "certifications") {
           let certifications = field.node.value;
-          productData.certifications = certifications.replace(
-            "C3D2,",
-            "C3D2   </br>"
-          );
+          productData.certifications = certifications.replace(",", ",");
         }
       });
     }
@@ -190,7 +163,6 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "rating") {
           let rating = field.node.value;
-
           productData.rating = rating.replace(",", " | ");
         }
       });
@@ -200,14 +172,6 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "package_content") {
           productData.package_content = field.node.value;
-        }
-      });
-    }
-
-    function findMaterial(fields) {
-      fields.forEach((field) => {
-        if (field.node.name === "material") {
-          productData.material = field.node.value;
         }
       });
     }
@@ -227,16 +191,6 @@ class App extends Component {
           thumbnails += `<img class="thumbnail" src="${image.node.img320px}">`;
       });
       productData.thumbnails = thumbnails;
-    }
-
-    function generateImagelist(images) {
-      let productList = "";
-
-      images.forEach((image, index) => {
-        if (index !== 0 && index < 1)
-          productList += `<img class="thumbnail2" src="${image.node.img320px}">`;
-      });
-      productData.productList = productList;
     }
 
     function findBenefits(fields) {
@@ -273,7 +227,7 @@ class App extends Component {
         }
       });
       fields.forEach((field) => {
-        if (field.node.name === "series") {
+        if (field.node.name === "axtion_series") {
           axtionSeries = field.node.value;
         }
       });
@@ -341,8 +295,7 @@ class App extends Component {
 
     // Assign data values into state
     function handleData(data) {
-      const product = data.site.product;
-      console.log("Assigning new values to state...");
+      const product = data?.data?.site?.product;
       productData.product_id = product.entityId;
       productData.product_name = product.name;
       findProductType(product.customFields.edges);
@@ -356,7 +309,6 @@ class App extends Component {
       productData.defaultImage = product.defaultImage;
       productData.images = product.images.edges;
       generateThumbnails(product.images.edges);
-      generateImagelist(product.images.edges);
       findBenefits(product.customFields.edges);
       findFeatures(product.customFields.edges);
       productData.warranty = product.warranty;
@@ -365,7 +317,6 @@ class App extends Component {
       productData.weight = product.weight;
       productData.width = product.width;
       findPackageContent(product.customFields.edges);
-      findMaterial(product.customFields.edges);
       findDeviceCompatibility(product.customFields.edges);
     }
 
@@ -374,9 +325,7 @@ class App extends Component {
     */
     function renderPage(data) {
       // Render the HTML for the product
-      //console.log(data);
-
-      //const product = data.site.product;
+      const product = data.data.site.product;
 
       handleData(data);
 
@@ -420,25 +369,25 @@ class App extends Component {
           `;
 
       // Contact Section - currently not used on customer preview
-      // const contact = `
-      //     <div class="contact-table" style="margin: 10px 0 300px 0; padding: 10px;">
-      //       <table class="contact" style="background: white; width: 100%;">
-      //         <tr>
-      //           <td class="text-center" style="padding: 5px 30px; width: 25%;">
-      //             <img src="https://shop.thejoyfactory.com/content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
-      //           </td>
-      //           <td class="text-left" style="padding: 5px 30px; width: 25%;">
-      //             <p style="font-size: 1.25rem; font-weight: bold;">${product.contact_name}</p>
-      //             <p style="font-size: 0.9rem; font-weight: bold;">${product.contact_dep}</p>
-      //           </td>
-      //           <td class="text-left" style="border-left:solid 2px red; padding: 5px 30px; width: 50%;">
-      //             <p>Direct Phone Number | ${product.contact_phone}</p>
-      //             <p>Email Address | ${product.contact_email}</p>
-      //           </td>
-      //         </tr>
-      //       </table>
-      //     </div>
-      //   `;
+      const contact = `
+          <div class="contact-table" style="margin: 10px 0 300px 0; padding: 10px;">
+            <table class="contact" style="background: white; width: 100%;">
+              <tr>
+                <td class="text-center" style="padding: 5px 30px; width: 25%;">
+                  <img src="https://shop.thejoyfactory.com/content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
+                </td>
+                <td class="text-left" style="padding: 5px 30px; width: 25%;">
+                  <p style="font-size: 1.25rem; font-weight: bold;">${product.contact_name}</p>
+                  <p style="font-size: 0.9rem; font-weight: bold;">${product.contact_dep}</p>
+                </td>
+                <td class="text-left" style="border-left:solid 2px red; padding: 5px 30px; width: 50%;">
+                  <p>Direct Phone Number | ${product.contact_phone}</p>
+                  <p>Email Address | ${product.contact_email}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        `;
 
       // Render the product into a preview
       return `
@@ -471,9 +420,6 @@ class App extends Component {
                   }
                   <p>
                     ${product.thumbnails}
-                    ${product.productList}
-
-
                   </p>
                 </td>
               </tr>
@@ -516,10 +462,6 @@ class App extends Component {
                         }" alt="The Joy Factory product image">`
                       : ""
                   }
-
-                  
-
-                  
                   <p class="disclaimer" style="font-size: 7px;">The information on this data sheet is subject to change at any time at the discretion of The Joy Factory</p>
                 </td>
                 <td class="tech-specs">
@@ -599,9 +541,6 @@ class App extends Component {
                       <tr>
                         <td>Package content: ${product.package_content}</td>
                       </tr>
-                      <tr>
-                        <td>Material: ${product.material}</td>
-                      </tr>
                     </table>
                   </td>
                 </tr>
@@ -613,147 +552,29 @@ class App extends Component {
         `;
     }
 
-    // function renderPrice(prices) {
-    //   // Render the price component from the supplied prices
-    //   return `<span></span>`;
-    // }
-
-    /*
-        API fetching
-    */
-    function getProductAndSiteInfo(params) {
-      const storeUrl = new URL(params.store_url);
-      const graphQLUrl = `${storeUrl.origin}/graphql`;
-      let data = JSON.stringify({
-        query: `query SingleProduct {
-                    site {
-                       product(entityId: ${params.id}) {
-                        entityId
-                        brand {
-                          name
-                        }
-                        name
-                        sku
-                        path
-                        description
-                        height {
-                          value
-                          unit
-                        }
-                        width {
-                          value
-                          unit
-                        }
-                        weight {
-                          value
-                          unit
-                        }
-                        depth {
-                          value
-                          unit
-                        }
-                        warranty
-                        customFields {
-                          edges {
-                            node {
-                              name
-                              value
-                            }
-                          }
-                        }
-                        defaultImage {
-                          img320px: url(width: 320)
-                          img640px: url(width: 640)
-                          img960px: url(width: 960)
-                        }
-                        images {
-                          edges {
-                            node {
-                              img320px:url(width:320)
-                            }
-                          }
-                        }
-                        prices {
-                          price {
-                            ...PriceFields
-                          }
-                        }
-                      }
-                    }
-                  }
-                    
-                  fragment PriceFields on Money {
-                    value
-                    currencyCode
-                  }`,
-        variables: {},
-      });
-
-      let config = {
-        method: "post",
-        maxBodyLength: Infinity,
-        url: graphQLUrl,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q",
-          Cookie:
-            "SF-CSRF-TOKEN=04ea22a9-552a-41b0-b07c-c9626a84601c; SHOP_SESSION_TOKEN=f6269edc-e2ba-47d2-a576-7f9bc95e9e5e; __cf_bm=umnodATYMi.2sege.Pw2GMfboyXiU3aHGuzWm4RN.IQ-1739369602-1.0.1.1-a8qodWKZKdahGbzfqXUfDp.sokzuLN26QNxUnM6yU92arrSE83ucHeRMoBAExXklWETg2bCCURNvj1ZSKfqE7g; athena_short_visit_id=bf9a3ea5-a9e1-4c8c-b637-655edaca65c7:1739369623; fornax_anonymousId=b1c357e8-d3b6-4a6d-9220-71d9367146a8",
-        },
-        data: data,
-        variables: {},
-      };
-
-      return axios
-        .request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-          return response.data;
-        })
-        .catch((error) => {
-          console.error("GraphQL API Error:", error);
-          throw error;
-        });
+    function renderPrice(prices) {
+      // Render the price component from the supplied prices
+      return `<span></span>`;
     }
 
-    // Set up default params (token expires 1/15/2038)hh
-    let params = {
-      store_url: "https://shop.thejoyfactory.com/",
-      images_url:
-        "https://api.bigcommerce.com/stores/4ccc5gfp0c/v3/catalog/products/1970/images",
-      id: null,
-      token:
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q",
-
-      //"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9kYXRhc2hlZXQtZnJvbnRlbmR0amYtdjEubmV0bGlmeS5hcHAiXSwiZWF0IjoyMTQ2MDAyNTc4LCJpYXQiOjE2NTE3NzMxMTEsImlzcyI6IkJDIiwic2lkIjoxMDAwNjc2MjQwLCJzdWIiOiJxc3M0dWxrNmdlNjI1NHJtaXZhZTdqYmh2NnhsMGp4Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.V2H0x1GY8R0D1gDzfBoL5Ad0fZ0KeiIPKeUzhhENE1VB8pNzGR06GDg5OdZLxhVHfvP8ukhQVCX4GbbUXyklaw"
-    };
-
-    // Fill in supplied URL params
-    Object.keys(params).forEach(function (key) {
-      if (searchParams.get(key)) {
-        params[key] = searchParams.get(key);
-      }
-    });
-
-    // Use testdata.json file as testData
-    // renderPage(testData);
+    //
 
     // Check for required parameters, throw an error if they're not found
-    if (!(params.store_url && params.token)) {
+    if (!this.state) {
       throw new Error(
         "At least one of the required URL parameters (Store URL, Token) was not supplied or was invalid"
       );
     } else {
       // It seems like the required parameters were supplied, try to load the product data from the Storefront API
-      getProductAndSiteInfo(params)
+
+      axios
+        .get(`/get-product?id=${this.state.id}&sku=${this.state.sku}`)
         .then((data) => {
           // With our data loaded, render the product listing
-
-          renderPage(data);
+          renderPage(data.data);
         })
         .catch((e) => {
           // Some error was encountered
-          console.log(`Error: failed to fetch product data.`);
           throw e;
         });
     }
