@@ -301,7 +301,7 @@ class App extends Component {
     }
 
     function findFeatureIcons(features, productLine, axtionSeries) {
-      let domain = "https://thejoyfactory.com/content/datasheet/icons/";
+      let domain = "https://shop.thejoyfactory.com//content/datasheet/icons/";
       let iconsrc = [];
 
       features.forEach((item, index) => {
@@ -416,9 +416,9 @@ class App extends Component {
                 <td style="width:16.5%;">
                   <table class="footer-icons" style="width:100%;">
                     <tr>
-                      <td class="footer-image"><img src="https://thejoyfactory.com/content/datasheet/protect.jpg" alt="The Joy Factory Protect Icon"></td>
-                      <td class="footer-image"><img src="https://thejoyfactory.com/content/datasheet/secure.jpg" alt="The Joy Factory Secure Icon"></td>
-                      <td class="footer-image"><img src="https://thejoyfactory.com/content/datasheet/position.jpg" alt="The Joy Factory Position Icon"></td>
+                      <td class="footer-image"><img src="https://shop.thejoyfactory.com//content/datasheet/protect.jpg" alt="The Joy Factory Protect Icon"></td>
+                      <td class="footer-image"><img src="https://shop.thejoyfactory.com//content/datasheet/secure.jpg" alt="The Joy Factory Secure Icon"></td>
+                      <td class="footer-image"><img src="https://shop.thejoyfactory.com//content/datasheet/position.jpg" alt="The Joy Factory Position Icon"></td>
                     </tr>
                     <tr>
                       <td class="footer-image-content">Protect</td>
@@ -428,7 +428,7 @@ class App extends Component {
                   </table>
                 </td>
                 <td align="center" style="width:10.5%;">
-                  <img src="https://thejoyfactory.com/content/datasheet/logo.png" alt="The Joy Factory logo." style="width:100px;">
+                  <img src="https://shop.thejoyfactory.com//content/datasheet/logo.png" alt="The Joy Factory logo." style="width:100px;">
                 </td>
             </tr>
           </table>
@@ -440,7 +440,7 @@ class App extends Component {
       //       <table class="contact" style="background: white; width: 100%;">
       //         <tr>
       //           <td class="text-center" style="padding: 5px 30px; width: 25%;">
-      //             <img src="https://thejoyfactory.com/content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
+      //             <img src="https://shop.thejoyfactory.com//content/datasheet/logo-lg.png" alt="The Joy Factory logo." style="width:100px;">
       //           </td>
       //           <td class="text-left" style="padding: 5px 30px; width: 25%;">
       //             <p style="font-size: 1.25rem; font-weight: bold;">${product.contact_name}</p>
@@ -725,7 +725,7 @@ class App extends Component {
 
     // Set up default params (token expires 1/15/2038)hh
     let params = {
-      store_url: "https://thejoyfactory.com",
+      store_url: "https://shop.thejoyfactory.com/",
       images_url: "https://api.bigcommerce.com/stores/4ccc5gfp0c/v3/catalog/products/1970/images",
       id: null,
       token:
@@ -782,7 +782,7 @@ class App extends Component {
         <div className="LoadingSpinner-wrapper">
           <img
             className="download-icon"
-            src="https://thejoyfactory.com/content/datasheet/icons/data-sheet-icon-01.png"
+            src="https://shop.thejoyfactory.com//content/datasheet/icons/data-sheet-icon-01.png"
             alt="icon"
           />
           <button className="btn btn-primary" onClick={this.downloadPdf}>
