@@ -53,9 +53,6 @@ let productData = {
   footer_site: "www.thejoyfactory.com",
 };
 
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -112,7 +109,6 @@ class App extends Component {
     const pageUrl = new URL(window.location);
     const searchParams = pageUrl.searchParams;
     //console.log(`Search Params: ${searchParams}`);
-    
 
     /*
         Utility functions for rendering
@@ -182,8 +178,10 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "certifications") {
           let certifications = field.node.value;
-             productData.certifications = certifications.replace("C3D2,", "C3D2   </br>");
-        
+          productData.certifications = certifications.replace(
+            "C3D2,",
+            "C3D2   </br>"
+          );
         }
       });
     }
@@ -192,7 +190,7 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "rating") {
           let rating = field.node.value;
-         
+
           productData.rating = rating.replace(",", " | ");
         }
       });
@@ -229,24 +227,17 @@ class App extends Component {
           thumbnails += `<img class="thumbnail" src="${image.node.img320px}">`;
       });
       productData.thumbnails = thumbnails;
-
     }
-    
-  
+
     function generateImagelist(images) {
-      
       let productList = "";
-  
+
       images.forEach((image, index) => {
-        if (index !== 0 && index < 1 )
-        productList += `<img class="thumbnail2" src="${image.node.img320px}">`;
+        if (index !== 0 && index < 1)
+          productList += `<img class="thumbnail2" src="${image.node.img320px}">`;
       });
       productData.productList = productList;
     }
-
-  
-
-
 
     function findBenefits(fields) {
       var benefits;
@@ -284,7 +275,6 @@ class App extends Component {
       fields.forEach((field) => {
         if (field.node.name === "series") {
           axtionSeries = field.node.value;
-          
         }
       });
       let featureList = features.split(",");
@@ -348,9 +338,6 @@ class App extends Component {
         }
       });
     }
-   
-
-
 
     // Assign data values into state
     function handleData(data) {
@@ -382,7 +369,6 @@ class App extends Component {
       findDeviceCompatibility(product.customFields.edges);
     }
 
- 
     /*
         Page rendering logic
     */
@@ -391,7 +377,6 @@ class App extends Component {
       //console.log(data);
 
       //const product = data.site.product;
-   
 
       handleData(data);
 
@@ -636,11 +621,11 @@ class App extends Component {
     /*
         API fetching
     */
-        function getProductAndSiteInfo(params) {
-          const storeUrl = new URL(params.store_url);
-          const graphQLUrl = `${storeUrl.origin}/graphql`;
-          let data = JSON.stringify({
-            query: `query SingleProduct {
+    function getProductAndSiteInfo(params) {
+      const storeUrl = new URL(params.store_url);
+      const graphQLUrl = `${storeUrl.origin}/graphql`;
+      let data = JSON.stringify({
+        query: `query SingleProduct {
                     site {
                        product(entityId: ${params.id}) {
                         entityId
@@ -701,48 +686,47 @@ class App extends Component {
                     value
                     currencyCode
                   }`,
-            variables: {},
-          });
-    
-          let config = {
-            method: "post",
-            maxBodyLength: Infinity,
-            url: graphQLUrl,
-            headers: {
-              "Content-Type": "application/json",
-              Authorization:
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q",
-              Cookie:
-                "SF-CSRF-TOKEN=04ea22a9-552a-41b0-b07c-c9626a84601c; SHOP_SESSION_TOKEN=f6269edc-e2ba-47d2-a576-7f9bc95e9e5e; __cf_bm=umnodATYMi.2sege.Pw2GMfboyXiU3aHGuzWm4RN.IQ-1739369602-1.0.1.1-a8qodWKZKdahGbzfqXUfDp.sokzuLN26QNxUnM6yU92arrSE83ucHeRMoBAExXklWETg2bCCURNvj1ZSKfqE7g; athena_short_visit_id=bf9a3ea5-a9e1-4c8c-b637-655edaca65c7:1739369623; fornax_anonymousId=b1c357e8-d3b6-4a6d-9220-71d9367146a8",
-            },
-            data: data,
-          };
-    
-          return axios
-            .request(config)
-            .then((response) => {
-              console.log(JSON.stringify(response.data));
-              return response.data;
-            })
-            .catch((error) => {
-              console.error("GraphQL API Error:", error);
-              throw error;
-            });
-        }
+        variables: {},
+      });
+
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: graphQLUrl,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q",
+          Cookie:
+            "SF-CSRF-TOKEN=04ea22a9-552a-41b0-b07c-c9626a84601c; SHOP_SESSION_TOKEN=f6269edc-e2ba-47d2-a576-7f9bc95e9e5e; __cf_bm=umnodATYMi.2sege.Pw2GMfboyXiU3aHGuzWm4RN.IQ-1739369602-1.0.1.1-a8qodWKZKdahGbzfqXUfDp.sokzuLN26QNxUnM6yU92arrSE83ucHeRMoBAExXklWETg2bCCURNvj1ZSKfqE7g; athena_short_visit_id=bf9a3ea5-a9e1-4c8c-b637-655edaca65c7:1739369623; fornax_anonymousId=b1c357e8-d3b6-4a6d-9220-71d9367146a8",
+        },
+        data: data,
+        variables: {},
+      };
+
+      return axios
+        .request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          return response.data;
+        })
+        .catch((error) => {
+          console.error("GraphQL API Error:", error);
+          throw error;
+        });
+    }
 
     // Set up default params (token expires 1/15/2038)hh
     let params = {
       store_url: "https://shop.thejoyfactory.com/",
-      images_url: "https://api.bigcommerce.com/stores/4ccc5gfp0c/v3/catalog/products/1970/images",
+      images_url:
+        "https://api.bigcommerce.com/stores/4ccc5gfp0c/v3/catalog/products/1970/images",
       id: null,
       token:
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q"
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cDovL2xvY2FsaG9zdDozMDAwIl0sImVhdCI6MjE0NjAwMjU3OCwiaWF0IjoxNjUxNTc1NDM1LCJpc3MiOiJCQyIsInNpZCI6MTAwMDY3NjI0MCwic3ViIjoicXNzNHVsazZnZTYyNTRybWl2YWU3amJodjZ4bDBqeCIsInN1Yl90eXBlIjoyLCJ0b2tlbl90eXBlIjoxfQ.2LxDqgnyUNqZEYxDaLz-uffUczn6N2Rz2w1mmIZl_SkV9Fc6Uhxcpiu74EzO2uQCLP1y-sf6j7h3RaRGNX0z7Q",
 
-       //"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9kYXRhc2hlZXQtZnJvbnRlbmR0amYtdjEubmV0bGlmeS5hcHAiXSwiZWF0IjoyMTQ2MDAyNTc4LCJpYXQiOjE2NTE3NzMxMTEsImlzcyI6IkJDIiwic2lkIjoxMDAwNjc2MjQwLCJzdWIiOiJxc3M0dWxrNmdlNjI1NHJtaXZhZTdqYmh2NnhsMGp4Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.V2H0x1GY8R0D1gDzfBoL5Ad0fZ0KeiIPKeUzhhENE1VB8pNzGR06GDg5OdZLxhVHfvP8ukhQVCX4GbbUXyklaw"
+      //"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjaWQiOjEsImNvcnMiOlsiaHR0cHM6Ly9kYXRhc2hlZXQtZnJvbnRlbmR0amYtdjEubmV0bGlmeS5hcHAiXSwiZWF0IjoyMTQ2MDAyNTc4LCJpYXQiOjE2NTE3NzMxMTEsImlzcyI6IkJDIiwic2lkIjoxMDAwNjc2MjQwLCJzdWIiOiJxc3M0dWxrNmdlNjI1NHJtaXZhZTdqYmh2NnhsMGp4Iiwic3ViX3R5cGUiOjIsInRva2VuX3R5cGUiOjF9.V2H0x1GY8R0D1gDzfBoL5Ad0fZ0KeiIPKeUzhhENE1VB8pNzGR06GDg5OdZLxhVHfvP8ukhQVCX4GbbUXyklaw"
     };
-
-
-
 
     // Fill in supplied URL params
     Object.keys(params).forEach(function (key) {
@@ -750,7 +734,7 @@ class App extends Component {
         params[key] = searchParams.get(key);
       }
     });
-   
+
     // Use testdata.json file as testData
     // renderPage(testData);
 
@@ -782,8 +766,6 @@ class App extends Component {
   render() {
     const loading = this.state.loading;
 
-
-   
     return (
       <div className="App container my-5">
         <div className="LoadingSpinner-wrapper">
