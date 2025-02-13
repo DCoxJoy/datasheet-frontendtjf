@@ -1,0 +1,17 @@
+.Signup {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Signup .container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+}
+
+.Signup-redirect {
+    margin: 20px 0;
+}
