@@ -711,7 +711,7 @@ class App extends Component {
       return fetch(graphQLUrl, {
         method: "POST",
         credentials: "include",
-        mode: "cors",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${params.token}`,
@@ -782,7 +782,7 @@ class App extends Component {
         <div className="LoadingSpinner-wrapper">
           <img
             className="download-icon"
-            src="https://shop.thejoyfactory.com//content/datasheet/icons/data-sheet-icon-01.png"
+            src="https://shop.thejoyfactory.com/content/datasheet/icons/data-sheet-icon-01.png"
             alt="icon"
           />
           <button className="btn btn-primary" onClick={this.downloadPdf}>
